@@ -1,0 +1,16 @@
+
+<odoo>
+    <data>
+        <menuitem
+          id="to_do_menu"
+          name="task"
+
+        />
+        <menuitem
+          id="all_task_menu"
+          name="All Task"
+          parent="to_do_menu"
+          action="todo_app_window"
+        />
+    </data>
+</odoo>

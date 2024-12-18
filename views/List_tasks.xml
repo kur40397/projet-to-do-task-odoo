@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="todo_app_window" model="ir.actions.act_window">
+            <field name="name">Tasks</field>
+            <field name="res_model">todo_app.task</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+
+        <record id="task_list" model="ir.ui.view">
+          <field name="name">Task List</field>
+          <field name="model">todo_app.task</field>
+            <!--hna katdefini la structure -->
+          <field name="arch" type="xml">
+              <!-- za3ma hadi tree view-->
+              <list>
+                  <field name="name"/>
+                  <field name="assignTo"/>
+                  <field name="description"/>
+                  <field name="dueDate"/>
+                  <field name="status"/>
+              </list>
+          </field>
+        </record>
+        <record id="task_form" model="ir.ui.view">
+          <field name="name">Task Form</field>
+          <field name="model">todo_app.task</field>
+            <!--hna katdefini la structure -->
+          <field name="arch" type="xml">
+               <form string="Task Form">
+                <sheet>
+                       <group string="Form task">
+                           <group>
+                               <field name="name"/>
+                               <field name="assignTo"/>
+                           </group>
+                           <group>
+                               <field name="description"/>
+                               <field name="dueDate"/>
+                           </group>
+                            <group>
+                               <field name="status"/>
+                           </group>
+                       </group>
+                </sheet>
+              </form>
+          </field>
+        </record>
+    </data>
+</odoo>
