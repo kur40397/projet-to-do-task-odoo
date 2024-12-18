@@ -43,8 +43,26 @@
                            </group>
                        </group>
                 </sheet>
+                <chatter/>
               </form>
           </field>
         </record>
+        <record id="todo_app_task_search" model="ir.ui.view">
+           <field name="name">todo_app.task.search</field>
+           <field name="model">todo_app.task</field>
+           <field name="arch" type="xml">
+             <search>
+                 <field name="name"/>
+                 <field name="assignTo"/>
+                 <filter name="Status_new_filter" string="IsNew" domain="[('status', '=', 'new')]"/>
+                 <filter name="Status_inProgress_filter" string="IsInProgress" domain="[('status', '=', 'inProgress')]"/>
+                 <filter name="Status_completed_filter" string="IsCompleted" domain="[('status', '=', 'dueDate')]"/>
+                 <filter name="assignTo_GroupBy" string="group by assignTo" context="{'group_by':'assignTo'}"/>
+                 <filter name="dueDate_GroupBy" string="group by dueDate" context="{'group_by':'dueDate'}"/>
+                 <filter name="status_GroupBy" string="group by status" context="{'group_by':'status'}"/>
+             </search>
+           </field>
+        </record>
+
     </data>
 </odoo>
