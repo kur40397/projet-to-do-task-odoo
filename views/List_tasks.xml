@@ -19,6 +19,7 @@
                   <field name="description"/>
                   <field name="dueDate"/>
                   <field name="status"/>
+                  <field name="active"/>
               </list>
           </field>
         </record>
@@ -47,6 +48,7 @@
                            <group>
                                <field name="description"/>
                                <field name="dueDate"/>
+                               <field name="active"/>
                            </group>
 
 
@@ -56,6 +58,23 @@
               </form>
           </field>
         </record>
+        <record id="task_closed_server_action" model="ir.actions.server">
+            <field name="name">Closed</field>
+            <field name="model_id" ref="model_todo_app_task"/>
+            <field name="binding_model_id" ref="model_todo_app_task"/>
+            <field name="state">code</field> <!-- radi idir lik code python-->
+            <field name="code">
+              action=records.action_closed()
+                <!--
+                  records: représente l'ensemble des enregistrements sur lesquels l'action s'exécute
+                -->
+            </field>
+            <!--
+              model_id:définit dans le quel l'action va définie
+              binding_model_id: définie ou l'action est visible ?
+            -->
+
+        </record>
         <record id="todo_app_task_search" model="ir.ui.view">
            <field name="name">todo_app.task.search</field>
            <field name="model">todo_app.task</field>
@@ -63,6 +82,7 @@
              <search>
                  <field name="name"/>
                  <field name="assignTo"/>
+
                  <filter name="Status_new_filter" string="IsNew" domain="[('status', '=', 'new')]"/>
                  <filter name="Status_inProgress_filter" string="IsInProgress" domain="[('status', '=', 'inProgress')]"/>
                  <filter name="Status_completed_filter" string="IsCompleted" domain="[('status', '=', 'dueDate')]"/>
