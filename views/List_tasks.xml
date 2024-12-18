@@ -29,6 +29,16 @@
           <field name="arch" type="xml">
                <form string="Task Form">
                 <sheet>
+                    <header>
+                        <field name="status" widget="statusbar" />
+                        <button name="button_in_progress" class="oe_highlight" invisible="status!='new'" string="In Progress" type="object" help="Move task to In Progress state"/>
+                        <button name="button_completed" class="oe_highlight" invisible="status!='inProgress'" string="Completed" type="object" help="Move task to completed state"/>
+                        <!--
+                        name : le nom de la méthode li radi t'executa
+                        states: ina status li radi affichi fih le boutton
+                        type: indique que le bouton affiche une méthode python
+                        -->
+                    </header>
                        <group string="Form task">
                            <group>
                                <field name="name"/>
@@ -38,9 +48,8 @@
                                <field name="description"/>
                                <field name="dueDate"/>
                            </group>
-                            <group>
-                               <field name="status"/>
-                           </group>
+
+
                        </group>
                 </sheet>
                 <chatter/>

@@ -17,6 +17,13 @@ class Task(models.Model):
             ('new','New'),
             ('inProgress','In Progress'),
             ('completed','Completed'),
-        ],default='new', tracking=True
+        ],default='new', tracking=True ,readonly=True, copy=False
+
     )
+
+    def button_in_progress(self):
+        self.write({'status': "inProgress"})
+
+    def button_completed(self):
+        self.write({'status':'completed'})
 
