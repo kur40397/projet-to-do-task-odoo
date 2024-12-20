@@ -13,13 +13,14 @@
             <!--hna katdefini la structure -->
           <field name="arch" type="xml">
               <!-- za3ma hadi tree view-->
-              <list>
+              <list decoration-danger="(is_late)">
                   <field name="name"/>
                   <field name="assignTo"/>
                   <field name="description"/>
                   <field name="dueDate"/>
                   <field name="status"/>
                   <field name="active"/>
+                  <field name="is_late" invisible="True" />
               </list>
           </field>
         </record>
@@ -50,8 +51,6 @@
                                <field name="dueDate"/>
                                <field name="active"/>
                            </group>
-
-
                        </group>
                 </sheet>
                 <chatter/>
@@ -71,10 +70,32 @@
             </field>
             <!--
               model_id:définit dans le quel l'action va définie
-              binding_model_id: définie ou l'action est visible ?
+              binding_model_id: affichih f action gear
             -->
-
         </record>
+
+
+        <record id="daily_task" model="ir.cron">
+            <field name="name">daily Tasks</field>
+            <field name="model_id" ref="model_todo_app_task" />
+            <field name="state">code</field>
+            <field name="code">model.check_expected_date()</field>
+            <field name="interval_number">5</field>
+            <!--combien je dois attendre entre chaque execution-->
+            <field name="interval_type">minutes</field>
+            <!--l'unité d'attente-->
+            <!--nombre d'appel -1 l'infinie -->
+            <field name="active">True</field>
+            <!--kat automatiser la tache -->
+            <field name="nextcall"
+                  eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+            <!--
+               nextcall specifies the exact date and time for the first execution of an automated task
+            -->
+        </record>
+
+
+
         <record id="todo_app_task_search" model="ir.ui.view">
            <field name="name">todo_app.task.search</field>
            <field name="model">todo_app.task</field>

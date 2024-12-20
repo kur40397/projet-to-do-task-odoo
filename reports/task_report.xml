@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+    <record id="task_report" model="ir.actions.report">
+
+     <field name="name"> Property Report </field>
+     <field name="model_id">todo_app.task</field>
+     <field name="report_type">qweb-pdf</field> <!--rapport pdf -->
+     <field name="binding_model_id" ref="model_odo_app_task" />
+        <!-- kanrefereciou wa7d lmodel f ir.model -->
+     <field name="binding_type">report</field>
+      <field name="report_name">report</field>
+    </record>
+
+    </data>
+</odoo>
