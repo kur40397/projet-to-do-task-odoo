@@ -12,6 +12,8 @@
      <field name="binding_type">report</field>
       <field name="report_name">report</field>
     </record>
+    <template>
 
+    </template>
     </data>
 </odoo>
