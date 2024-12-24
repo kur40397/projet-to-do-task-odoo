@@ -20,28 +20,48 @@
           <t t-call="web.external_layout"> <!--katzid lik a mise en page pour les rapports l'entête et le pied de la page-->
              <t t-foreach="docs" t-as="rec"> <!--t-as: kifach takidi records-->
               <h1>Task Report</h1>
-                 <table style="width: 100%;">
+                 <table style="width: 100%;border-collapse: collapse">
                      <thead>
-                         <th colspan="14">General Information</th>
+                         <th colspan="8">General Information</th>
                      </thead>
                      <tbody>
                          <td>Name</td>
                          <td><t t-esc="rec.name"/></td>
                          <td>assign to</td>
-                         <td><t t-esc="rec.assignTo"/></td>
-                         <td>status</td>
-                         <td><t t-esc="rec.status"/></td>
+                         <td><t t-esc="rec.assignTo.name"/></td>
+
                      </tbody>
                      <thead>
-                         <th colspan="14">General Information</th>
+                         <th colspan="8">Additionnal Information</th>
                      </thead>
                      <tbody>
-                         <td>Name</td>
-                         <td><t t-esc="rec.name"/></td>
-                         <td>assign to</td>
-                         <td><t t-esc="rec.assignTo"/></td>
-                         <td>status</td>
-                         <td><t t-esc="rec.status"/></td>
+                         <td>Description</td>
+                         <td><t t-esc="rec.description"/></td>
+                         <td>Due Date</td>
+                         <td><t t-esc="rec.dueDate"/></td>
+                     </tbody>
+                 </table>
+                 <br/>
+                 <table >
+                     <thead >
+                         <th colspan="4">Name</th>
+                         <th colspan="2">company_id</th>
+                         <th colspan="2">department_id</th>
+                     </thead>
+                     <tbody>
+                         <t t-foreach="rec.employee_ids" t-as="emp">
+                            <tr>
+                                <td colspan="4">
+                                    <t t-esc="emp.name" />
+                                </td>
+                                <td colspan="2">
+                                    <t t-esc="emp.company_id.name"/>
+                                </td>
+                                <td colspan="2">
+                                    <t t-esc="emp.department_id.name"/>
+                                </td>
+                            </tr>
+                         </t>
                      </tbody>
                  </table>
               </t>

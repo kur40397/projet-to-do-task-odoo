@@ -52,6 +52,21 @@
                                <field name="active"/>
                            </group>
                        </group>
+                    <notebook>
+                       <page string="Partners">
+                           <!-- pour personnalisé l'affichage de la liste -->
+                          <field name="employee_ids">
+                            <list editable="bottom">
+                               <field name="id"/>
+                               <field name="name"/>
+                               <field name="company_id"/>
+                               <field name="department_id"/>
+                            </list>
+                           </field>
+                           <!-- modifier dans une seule ligne -->
+
+                       </page>
+                    </notebook>
                 </sheet>
                 <chatter/>
               </form>
