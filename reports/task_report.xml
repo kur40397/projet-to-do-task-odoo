@@ -4,16 +4,49 @@
 
     <record id="task_report" model="ir.actions.report">
 
-     <field name="name"> Property Report </field>
-     <field name="model_id">todo_app.task</field>
+     <field name="name">task Report</field>
+     <field name="model">todo_app.task</field>
      <field name="report_type">qweb-pdf</field> <!--rapport pdf -->
-     <field name="binding_model_id" ref="model_odo_app_task" />
+     <field name="binding_model_id" ref="model_todo_app_task" /> <!--binding_model_id : i7ot liya l'action f boutton dial action -->
         <!-- kanrefereciou wa7d lmodel f ir.model -->
-     <field name="binding_type">report</field>
-      <field name="report_name">report</field>
+     <field name="report_name">todo_app.task_report_template</field> <!--l'id la template dialek -->
+        <!-- module.smit template -->
     </record>
-    <template>
-
+        <!--Qweb : moteur de template-->
+    <template id="task_report_template">
+        <!-- t-call="web.html_container":le contenu de la template-->
+       <t t-call="web.html_container">
+           <!--sert a parcourir la lists des records-->
+          <t t-call="web.external_layout"> <!--katzid lik a mise en page pour les rapports l'entête et le pied de la page-->
+             <t t-foreach="docs" t-as="rec"> <!--t-as: kifach takidi records-->
+              <h1>Task Report</h1>
+                 <table style="width: 100%;">
+                     <thead>
+                         <th colspan="14">General Information</th>
+                     </thead>
+                     <tbody>
+                         <td>Name</td>
+                         <td><t t-esc="rec.name"/></td>
+                         <td>assign to</td>
+                         <td><t t-esc="rec.assignTo"/></td>
+                         <td>status</td>
+                         <td><t t-esc="rec.status"/></td>
+                     </tbody>
+                     <thead>
+                         <th colspan="14">General Information</th>
+                     </thead>
+                     <tbody>
+                         <td>Name</td>
+                         <td><t t-esc="rec.name"/></td>
+                         <td>assign to</td>
+                         <td><t t-esc="rec.assignTo"/></td>
+                         <td>status</td>
+                         <td><t t-esc="rec.status"/></td>
+                     </tbody>
+                 </table>
+              </t>
+          </t>
+       </t>
     </template>
     </data>
 </odoo>

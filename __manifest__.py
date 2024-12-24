@@ -23,8 +23,10 @@ Long description of module's purpose
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        # katdefinie chkon li radi accidi ldata mn lawal bach t3tini l'autorisation
         'views/List_tasks.xml',
-        'views/to_do_menu.xml'
+        'views/to_do_menu.xml',
+        'reports/task_report.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
