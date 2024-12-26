@@ -24,7 +24,9 @@ Long description of module's purpose
     'data': [
         'security/ir.model.access.csv',
         # katdefinie chkon li radi accidi ldata mn lawal bach t3tini l'autorisation
+        'data/sequence.xml',
         'views/List_tasks.xml',
+        'views/todo_app_task_history_view.xml',
         'views/to_do_menu.xml',
         'reports/task_report.xml'
     ],

@@ -4,7 +4,6 @@
         <menuitem
           id="to_do_menu"
           name="task"
-
         />
         <menuitem
           id="all_task_menu"
@@ -12,5 +11,14 @@
           parent="to_do_menu"
           action="todo_app_window"
         />
+        <menuitem
+                name="history task"
+                id="todo_app_task_history_menu"
+                parent="to_do_menu"
+                action="todo_app_task_history_act_win"
+
+
+        />
+
     </data>
 </odoo>

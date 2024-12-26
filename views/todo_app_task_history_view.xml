@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+         <record id="todo_app_task_history_act_win" model="ir.actions.act_window">
+            <field name="name">History Task</field>
+            <field name="res_model">todo_app.task_history</field>
+            <field name="view_mode">list,form</field>
+         </record>
+
+       <record id="todo_app_task_history_form_view" model="ir.ui.view">
+            <field name="name">todo_app.task_history.form</field>
+            <field name="model">todo_app.task_history</field>
+            <field name="arch" type="xml">
+                <form string="ModelTitle">
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="user_id" />
+                            <field name="task_id" />
+                        </group>
+                        <group>
+                            <field name="old_state"/>
+                            <field name="new_state"/>
+                        </group>
+                    </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="todo_app_task_history_tree_view" model="ir.ui.view">
+            <field name="name">todo_app.task_history.list</field>
+            <field name="model">todo_app.task_history</field>
+            <field name="arch" type="xml">
+                <list string="history of the task">
+                    <field name="user_id" />
+                    <field name="task_id" />
+                    <field name="old_state"/>
+                    <field name="new_state"/>
+                </list>
+            </field>
+         </record>
+
+
+    </data>
+</odoo>

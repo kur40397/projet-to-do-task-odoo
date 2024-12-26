@@ -36,7 +36,7 @@
 
                         <button name="action" type="object" class="btn-primary" string="Action"/>
 
-                        <button name="button_in_progress" class="oe_highlight" invisible="status!='new'" string="In Progress" type="object" help="Move task to In Progress state"/>
+                        <button name="button_in_progress" class="oe_highlight" invisible="status in ('inProgress','completed','closed')" string="In Progress" type="object" help="Move task to In Progress state"/>
                         <button name="button_completed" class="oe_highlight" invisible="status!='inProgress'" string="Completed" type="object" help="Move task to completed state"/>
                         <!--
                         name : le nom de la méthode li radi t'executa
@@ -44,21 +44,27 @@
                         type: indique que le bouton affiche une méthode python
                         -->
                     </header>
+                    <div class="oe-title">
+                      <label for="ref"/>
+                        <h1>
+                            <field  name="ref"/>
+                        </h1>
+                    </div>
                        <group string="Form task">
                            <group>
-                               <field name="name"/>
-                               <field name="assignTo"/>
+                               <field name="name" readonly="status=='closed'"/>
+                               <field name="assignTo" readonly="status=='closed'"/>
                            </group>
                            <group>
-                               <field name="description"/>
-                               <field name="dueDate"/>
-                               <field name="active"/>
+                               <field name="description" readonly="status=='closed'"/>
+                               <field name="dueDate" readonly="status=='closed'"/>
+                               <field name="active" readonly="status=='closed'"/>
                            </group>
                        </group>
                     <notebook>
                        <page string="Partners">
                            <!-- pour personnalisé l'affichage de la liste -->
-                          <field name="employee_ids">
+                          <field name="employee_ids" readonly="status=='closed'">
                             <list editable="bottom">
                                <field name="id"/>
                                <field name="name"/>
