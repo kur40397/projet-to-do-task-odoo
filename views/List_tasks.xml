@@ -13,13 +13,13 @@
             <!--hna katdefini la structure -->
           <field name="arch" type="xml">
               <!-- za3ma hadi tree view-->
-              <list decoration-danger="(is_late)">
+              <list decoration-warning="(late_ticket)">
                   <field name="name"/>
                   <field name="assignTo"/>
                   <field name="description"/>
                   <field name="dueDate"/>
                   <field name="status"/>
-                  <field name="active"/>
+                  <field name="late_ticket"/>
                   <field name="is_late" invisible="True" />
               </list>
           </field>
@@ -33,6 +33,9 @@
                 <sheet>
                     <header>
                         <field name="status" widget="statusbar" />
+
+                        <button name="action" type="object" class="btn-primary" string="Action"/>
+
                         <button name="button_in_progress" class="oe_highlight" invisible="status!='new'" string="In Progress" type="object" help="Move task to In Progress state"/>
                         <button name="button_completed" class="oe_highlight" invisible="status!='inProgress'" string="Completed" type="object" help="Move task to completed state"/>
                         <!--
@@ -64,7 +67,6 @@
                             </list>
                            </field>
                            <!-- modifier dans une seule ligne -->
-
                        </page>
                     </notebook>
                 </sheet>
@@ -75,7 +77,7 @@
         <record id="task_closed_server_action" model="ir.actions.server">
             <field name="name">Closed</field>
             <field name="model_id" ref="model_todo_app_task"/>
-            <field name="binding_model_id" ref="model_todo_app_task"/>
+            <field name="binding_model_id" ref="model_todo_app_task"/>  <!--katgeneri lik un boutton pour had l'action  -->
             <field name="state">code</field> <!-- radi idir lik code python-->
             <field name="code">
               action=records.action_closed()
@@ -98,15 +100,27 @@
             <field name="interval_number">5</field>
             <!--combien je dois attendre entre chaque execution-->
             <field name="interval_type">minutes</field>
-            <!--l'unité d'attente-->
-            <!--nombre d'appel -1 l'infinie -->
             <field name="active">True</field>
             <!--kat automatiser la tache -->
             <field name="nextcall"
-                  eval="(DateTime.now()).strftime('%Y-%m-%d')"/>
+                  eval="DateTime.now()"/>
             <!--
                nextcall specifies the exact date and time for the first execution of an automated task
             -->
+        </record>
+        <record id="late_ticket_task" model="ir.cron">
+            <field name="name">late Ticket</field>
+            <field name="model_id" ref="model_todo_app_task"/>
+            <field name="state">code</field>
+            <field name="code">model.check_late_ticket()</field>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="active">True</field>
+            <field name="nextcall" eval="DateTime.now()"/>
+            <!--
+              interprété un code python f XML
+            -->
+
         </record>
 
 

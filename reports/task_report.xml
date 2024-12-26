@@ -4,14 +4,15 @@
 
     <record id="task_report" model="ir.actions.report">
 
-     <field name="name">task Report</field>
+     <field name="name">task Report</field> <!-- name destiné a l'utilisateur finale-->
      <field name="model">todo_app.task</field>
-     <field name="report_type">qweb-pdf</field> <!--rapport pdf -->
+     <field name="report_type">qweb-html</field> <!--rapport pdf -->
      <field name="binding_model_id" ref="model_todo_app_task" /> <!--binding_model_id : i7ot liya l'action f boutton dial action -->
         <!-- kanrefereciou wa7d lmodel f ir.model -->
-     <field name="report_name">todo_app.task_report_template</field> <!--l'id la template dialek -->
+     <field name="report_name">todo_app.task_report_template</field> <!--l'id la template dialek / le nom technique de la template -->
         <!-- module.smit template -->
     </record>
+        <!-- <t> est une balise utilisé dans les templates Qweb -->
         <!--Qweb : moteur de template-->
     <template id="task_report_template">
         <!-- t-call="web.html_container":le contenu de la template-->

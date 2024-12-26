@@ -2,6 +2,7 @@
 from email.policy import default
 
 from odoo import models, fields, api
+from odoo.addons.test_convert.tests.test_env import field
 
 
 class Task(models.Model):
@@ -24,6 +25,8 @@ class Task(models.Model):
     active=fields.Boolean(default=True)
     employee_ids=fields.One2many('hr.employee','task_ids')
     is_late=fields.Boolean()
+    late_ticket=fields.Boolean()
+    #estimatedTime=fields.One2many('hr_timesheet.timesheet','task_ids')
 
     def button_in_progress(self):
         self.write({'status': "inProgress"})
@@ -49,3 +52,17 @@ class Task(models.Model):
                     'status':'closed'
                 })
 
+    def check_late_ticket(self):
+        tasks_ids=self.search([])
+        for rec in tasks_ids:
+            if rec.dueDate and rec.dueDate <= fields.date.today():
+                rec.write({
+                    'late_ticket':True
+                })
+
+    def action(self):
+        print(self.env['todo_app.task'].create({
+            'name':'tob',
+            'description':'where is tob',
+            'status':'inProgress'
+        }))
