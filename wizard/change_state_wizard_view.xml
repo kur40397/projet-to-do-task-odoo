@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <record id="action_change_state_wizard_window" model="ir.actions.act_window">
+            <field name="name">Change state wizard</field>
+            <field name="res_model">todo_app.change_state_wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <!--  hna katdefinie kifach target katafficha-->
+        </record>
+
+        <record id="action_change_state_wizard_view" model="ir.ui.view">
+          <field name="name">Change state wizard list</field>
+          <field name="model">todo_app.change_state_wizard</field>
+            <!--hna katdefini la structure -->
+          <field name="arch" type="xml">
+              <!-- za3ma hadi tree view-->
+              <list editable="bottom">
+                  <field name="task_id"/>
+                  <field name="state"/>
+                  <field name="reason"/>
+              </list>
+          </field>
+        </record>
+        <record id="view_change_state_wizard_form" model="ir.ui.view">
+          <field name="name">Change_state_wizard form</field>
+          <field name="model">todo_app.change_state_wizard</field>
+            <!--hna katdefini la structure -->
+          <field name="arch" type="xml">
+               <form string="Task Form">
+                <sheet>
+                       <group string="Form change state">
+                           <field name="task_id" invisible="1"/>
+                           <field name="state" required="1"/>
+                           <field name="reason" required="1"/>
+                       </group>
+                      <footer>
+                          <button string="Confirm" type="object" name="action_confirm" class="btn-primary" />
+                          <button string="Cancel" special="cancel" class="btn-secondary"/>
+                      </footer>
+                </sheet>
+                <chatter/>
+              </form>
+          </field>
+        </record>
+
+
+
+    </data>
+</odoo>

@@ -9,3 +9,4 @@ class HistoryTask(models.Model):
     task_id=fields.Many2one('todo_app.task')
     old_state=fields.Char()
     new_state=fields.Char()
+    reason = fields.Char()

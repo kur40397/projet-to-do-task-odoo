@@ -12,9 +12,8 @@
             <field name="name">todo_app.task_history.form</field>
             <field name="model">todo_app.task_history</field>
             <field name="arch" type="xml">
-                <form string="ModelTitle">
+                <form string="ModelTitle" create="False" edit="False" delete="False">
                 <sheet>
-
                     <group>
                         <group>
                             <field name="user_id" />
@@ -23,6 +22,7 @@
                         <group>
                             <field name="old_state"/>
                             <field name="new_state"/>
+                            <field name="reason"/>
                         </group>
                     </group>
                 </sheet>
@@ -34,9 +34,9 @@
             <field name="name">todo_app.task_history.list</field>
             <field name="model">todo_app.task_history</field>
             <field name="arch" type="xml">
-                <list string="history of the task">
+                <list string="history of the task" create="False" edit="False" delete="False">
                     <field name="user_id" />
-                    <field name="task_id" />
+                    <field name="task_id"  />
                     <field name="old_state"/>
                     <field name="new_state"/>
                 </list>

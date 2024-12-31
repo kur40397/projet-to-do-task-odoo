@@ -1,4 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_todo_app_task,access_todo_app_task,model_todo_app_task,base.group_user,1,1,1,1
 access_todo_app_task_history,access_todo_app_task_history,model_todo_app_task_history,base.group_user,1,1,1,1
+access_todo_app_change_state_wizard,access_todo_app_change_state_wizard,model_todo_app_change_state_wizard,base.group_user,1,1,1,1
 

@@ -28,6 +28,7 @@ Long description of module's purpose
         'views/List_tasks.xml',
         'views/todo_app_task_history_view.xml',
         'views/to_do_menu.xml',
+        'wizard/change_state_wizard_view.xml',
         'reports/task_report.xml'
     ],
     # only loaded in demonstration mode

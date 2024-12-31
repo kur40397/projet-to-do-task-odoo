@@ -10,9 +10,9 @@ class Task(models.Model):
     _name = 'todo_app.task'
     _description = 'this a todo app' # humain readable model name
     _inherit = ['mail.thread','mail.activity.mixin']
-    _rec_name = 'description' # le field li radi afficha comme un nom du record
+    _rec_name = 'name' # le field li radi afficha comme un nom du record
     ref= fields.Char(default='New',readonly=True )
-    name= fields.Char(required=True,string='Name', tracking=True)
+    name= fields.Char(required=True, tracking=True)
     assignTo=fields.Many2one('res.partner',string='Assign To' ,tracking=True,ondelete='cascade')
     description=fields.Char(string='Description' ,tracking=True)
     dueDate=fields.Date(string='Due Date', tracking=True)
@@ -29,14 +29,20 @@ class Task(models.Model):
     is_late=fields.Boolean()
     late_ticket=fields.Boolean()
     #estimatedTime=fields.One2many('hr_timesheet.timesheet','task_ids')
+    taskHistory_ids=fields.One2many('todo_app.task_history','task_id')
+
+
 
     def button_in_progress(self):
+        self.create_history_record(self.status,'inProgress')
         self.write({'status': "inProgress"})
 
     def button_completed(self):
+        self.create_history_record(self.status,'completed')
         self.write({'status':'completed'})
 
     def action_closed(self):
+        self.create_history_record(self.status,'closed')
         for rec in self:
             self.write({
                 'status':'closed'
@@ -78,3 +84,20 @@ class Task(models.Model):
         return res
 
 
+    def create_history_record(self, old_state, new_state,reason):
+         print(self.id)
+         self.env['todo_app.task_history'].create({
+                'user_id': self.env.user.id,
+                'task_id': self.id,
+                'old_state': old_state,
+                'new_state': new_state,
+                'reason': reason or "",
+            })
+
+    def action_open_change_state_wizard(self):
+        action = self.env['ir.actions.actions']._for_xml_id('todo_app.action_change_state_wizard_window')
+        # _for_xml_id katrecupiri l'action par son id li howa module.record_id bach to open pop up
+        action['context'] = {'default_task_id': self.id}
+        # action['context']: permettre d'ajouter des données supplémentaires
+
+        return action

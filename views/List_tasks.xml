@@ -59,6 +59,7 @@
                                <field name="description" readonly="status=='closed'"/>
                                <field name="dueDate" readonly="status=='closed'"/>
                                <field name="active" readonly="status=='closed'"/>
+                               <field name="employee_ids" readonly="status=='closed'" widget="many2many_checkboxes"/>
                            </group>
                        </group>
                     <notebook>
@@ -97,6 +98,50 @@
             -->
         </record>
 
+        <record id="action_todo_app_task_server" model="ir.actions.server">
+            <field name="name">Change state wizard</field>
+            <field name="model_id" ref="model_todo_app_task"/>
+            <field name="binding_model_id" ref="model_todo_app_task"/>  <!--katgeneri lik un boutton pour had l'action  -->
+            <field name="state">code</field> <!-- radi idir lik code python-->
+            <field name="code">
+              action=records.action_open_change_state_wizard()
+                <!--
+                  records: représente l'ensemble des enregistrements sur lesquels l'action s'exécute
+                -->
+            </field>
+            <!--
+              model_id:définit dans le quel l'action va définie
+              binding_model_id: affichih f action gear
+            -->
+        </record>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <record id="daily_task" model="ir.cron">
             <field name="name">daily Tasks</field>
@@ -126,7 +171,6 @@
             <!--
               interprété un code python f XML
             -->
-
         </record>
 
 
