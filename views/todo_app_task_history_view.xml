@@ -21,8 +21,8 @@
                         </group>
                         <group>
                             <field name="old_state"/>
-                            <field name="new_state"/>
-                            <field name="reason"/>
+                            <field name="new_state" />
+                            <field name="reason" />
                         </group>
                     </group>
                 </sheet>

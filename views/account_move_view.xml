@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id="view_order_form_inherit" model="ir.ui.view">
+           <field name="name">view move form</field>
+           <field name="model">account.move</field>
+           <field name="inherit_id" ref="account.view_move_form"/>
+               <field name="arch" type="xml">
+                   <xpath expr="//header" position="inside">
+                       <button name="just_do_something" string="Do Something" type="object" class="btn-primary"/>
+                       <!--katgol bli une action radi texecuta via la méthode  -->
+                   </xpath>
+               </field>
+       </record>
+    </data>
+</odoo>

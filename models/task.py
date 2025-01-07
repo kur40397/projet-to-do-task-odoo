@@ -11,7 +11,7 @@ class Task(models.Model):
     _description = 'this a todo app' # humain readable model name
     _inherit = ['mail.thread','mail.activity.mixin']
     _rec_name = 'name' # le field li radi afficha comme un nom du record
-    ref= fields.Char(default='New',readonly=True )
+    ref= fields.Char(readonly=True )
     name= fields.Char(required=True, tracking=True)
     assignTo=fields.Many2one('res.partner',string='Assign To' ,tracking=True,ondelete='cascade')
     description=fields.Char(string='Description' ,tracking=True)
@@ -34,7 +34,7 @@ class Task(models.Model):
 
 
     def button_in_progress(self):
-        self.create_history_record(self.status,'inProgress')
+        self.create_history_record(self.status,'inProgress','1')
         self.write({'status': "inProgress"})
 
     def button_completed(self):
@@ -69,29 +69,25 @@ class Task(models.Model):
                 })
 
     def action(self):
-        print(self.env['todo_app.task'].create({
-            'name':'tob',
-            'description':'where is tob',
-            'status':'inProgress'
-        }))
+        print(self.env['todo_app.task'].search(['|',('name','=','badr'),('description','=','this is badr')]))
 
     @api.model
     def create(self,vals):
         res=super(Task,self).create(vals)
-        if res.ref=='New':
-            res.ref=self.env['ir.sequence'].next_by_code('todo_app_task_seq')
-            # genère un numéro unique en se basant sur les règles li f had seq li l'id todo_app_task_seq
+
+        res.ref=self.env['ir.sequence'].next_by_code('todo_app_task_seq_TS')
+
         return res
 
 
-    def create_history_record(self, old_state, new_state,reason):
+    def create_history_record(self, old_state, new_state,reason=None):
          print(self.id)
          self.env['todo_app.task_history'].create({
                 'user_id': self.env.user.id,
                 'task_id': self.id,
                 'old_state': old_state,
                 'new_state': new_state,
-                'reason': reason or "",
+                'reason': reason or "aucune reason",
             })
 
     def action_open_change_state_wizard(self):
@@ -100,4 +96,11 @@ class Task(models.Model):
         action['context'] = {'default_task_id': self.id}
         # action['context']: permettre d'ajouter des données supplémentaires
 
+        return action
+    def action_related_assignTo(self):
+        action=self.env['ir.actions.actions']._for_xml_id('base.action_partner_form')
+        view_id=self.env.ref('base.view_partner_form').id
+        action['res_id']=self.assignTo.id
+        #res_id za3ma l'id dial record of the model li action katpointi 3lih
+        action['views']=[[view_id,'form']]
         return action

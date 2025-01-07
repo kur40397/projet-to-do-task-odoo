@@ -2,13 +2,14 @@
 <odoo>
     <data>
 
-    <record id="task_report" model="ir.actions.report">
+    <record id="action_task_report" model="ir.actions.report">
 
      <field name="name">task Report</field> <!-- name destiné a l'utilisateur finale-->
      <field name="model">todo_app.task</field>
      <field name="report_type">qweb-html</field> <!--rapport pdf -->
      <field name="binding_model_id" ref="model_todo_app_task" /> <!--binding_model_id : i7ot liya l'action f boutton dial action -->
         <!-- kanrefereciou wa7d lmodel f ir.model -->
+
      <field name="report_name">todo_app.task_report_template</field> <!--l'id la template dialek / le nom technique de la template -->
         <!-- module.smit template -->
     </record>
@@ -20,7 +21,7 @@
            <!--sert a parcourir la lists des records-->
           <t t-call="web.external_layout"> <!--katzid lik a mise en page pour les rapports l'entête et le pied de la page-->
              <t t-foreach="docs" t-as="rec"> <!--t-as: kifach takidi records-->
-              <h1>Task Report</h1>
+              <h1 style="font-family: 'PlaywriteAUSA';">Task Report</h1>
                  <table style="width: 100%;border-collapse: collapse">
                      <thead>
                          <th colspan="8">General Information</th>

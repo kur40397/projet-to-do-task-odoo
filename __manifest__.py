@@ -18,16 +18,19 @@ Long description of module's purpose
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','mail','hr','hr_timesheet'],
+    'depends': ['base','mail','hr','hr_timesheet','account'],
 
     # always loaded
     'data': [
+        'security/security.xml',
         'security/ir.model.access.csv',
         # katdefinie chkon li radi accidi ldata mn lawal bach t3tini l'autorisation
         'data/sequence.xml',
+        'data/sequence_for_each_task.xml',
         'views/List_tasks.xml',
         'views/todo_app_task_history_view.xml',
         'views/to_do_menu.xml',
+        'views/account_move_view.xml',
         'wizard/change_state_wizard_view.xml',
         'reports/task_report.xml'
     ],
@@ -35,6 +38,9 @@ Long description of module's purpose
     'demo': [
         'demo/demo.xml',
     ],
+    'assets':{
+        'web.report_assets_common':['todo_app/static/font.css']
+    },
     'application': True,
 }
 

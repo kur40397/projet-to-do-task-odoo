@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+          <record id="todo_app_task_sequence_ts" model="ir.sequence">
+             <field name="name">Todo app task sequence TS</field>
+             <field name="code">todo_app_task_seq_TS</field>
+             <field name="prefix">TS</field> <!-- le prefix -->
+             <field name="padding">10</field>
+             <field name="number_next">1</field>
+             <field name="number_increment">1</field>
+          </record>
+    </data>
+</odoo>

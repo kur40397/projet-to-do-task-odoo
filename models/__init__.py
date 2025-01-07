@@ -4,3 +4,4 @@ from . import task
 from . import hremployee
 from . import timesheet
 from . import task_history
+from . import account_move

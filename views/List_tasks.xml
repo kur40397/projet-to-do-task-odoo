@@ -30,7 +30,19 @@
             <!--hna katdefini la structure -->
           <field name="arch" type="xml">
                <form string="Task Form">
-                <sheet>
+                <sheet >
+                    <!-- name="button_box": Indique que ce conteneur est un espace spécifique pour afficher les smart buttons.  -->
+                    <div name="button_box" class="oe_button_box">
+                        <button
+                         name="action_related_assignTo"
+                         type="object"
+                         icon="fa-user"
+                         string="user"
+                         invisible="not assignTo"
+                        />
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active==True"/>
+                    <widget name="web_ribbon" title="completed" bg_color="text-bg-success" invisible="status!='completed'"/>
                     <header>
                         <field name="status" widget="statusbar" />
 
@@ -56,9 +68,8 @@
                                <field name="assignTo" readonly="status=='closed'"/>
                            </group>
                            <group>
-                               <field name="description" readonly="status=='closed'"/>
+                               <field name="description" readonly="status=='closed'" groups="todo_app.group_task_manager"/>
                                <field name="dueDate" readonly="status=='closed'"/>
-                               <field name="active" readonly="status=='closed'"/>
                                <field name="employee_ids" readonly="status=='closed'" widget="many2many_checkboxes"/>
                            </group>
                        </group>

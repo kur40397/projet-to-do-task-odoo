@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Define a new category for grouping related user roles -->
+        <record id="task_category" model="ir.module.category">
+        <!-- Name of the category shown in the Odoo interface -->
+              <field name="name">Home</field>
+        </record>
+        <record id="group_task_manager" model="res.groups">
+            <field name="name">Task Manager</field>
+            <field name="category_id" ref="todo_app.task_category"/>
+        </record>
+          <record id="group_task_user" model="res.groups">
+            <field name="name">Task User</field>
+            <field name="category_id" ref="todo_app.task_category"/>
+        </record>
+
+        <record id="rule_task" model="ir.rule">
+         <field name="name">User Task Access</field>
+         <field name="model_id" ref="model_todo_app_task"/>
+         <field name="domain_force">[('create_uid', '=', user.id)]</field>
+            <!--
+              user.id ==  l'utilisateur actueellement connecté
+              user_id ==  id de l'utilisateur associé a un enregistrement
+            -->
+         <field name="perm_read" eval="True"/>
+         <field name="perm_write" eval="True"/>
+         <field name="perm_create" eval="False"/>
+         <field name="perm_unlink" eval="False"/>
+       </record>
+
+    </data>
+</odoo>
